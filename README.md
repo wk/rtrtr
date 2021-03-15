@@ -91,13 +91,17 @@ _(where ... represents the rest of the arguments to pass to Docker and RTRTR)_
 This will also cause any configured RTRTR target ports to be published on the
 host network interface.
 
-If you're not using `--net=host` you will need to tell Docker to expoee the
+If you're not using `--net=host` you will need to tell Docker to expose the
 RTRTR target ports, either one by one using `-p`, or you can publish the default
 ports exposed by the Docker container (and at the same time remap them to high
 numbered ports) using `-P`. E.g.
 
+Port [9810](https://github.com/prometheus/prometheus/wiki/Default-port-allocations)
+is allocated metrics. A rtrtr instance with monitoring on this
+port can be launched so:
+
 ```bash
-docker run -p 8080:8080/tcp -p 9001:9001/tcp ...
+docker run -p 9810:9810/tcp -p 9001:9001/tcp ...
 ```
 
 Or:
@@ -110,6 +114,6 @@ You can verify which ports are exposed using the `docker ps` command which shoul
 show something like this:
 ```bash
 CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS          PORTS                                              NAMES
-146237ba9b4b   nlnetlabs/rtrtr   "/sbin/tini -- rtrtr…"   16 seconds ago   Up 14 seconds   0.0.0.0:49154->8080/tcp, 0.0.0.0:49153->9001/tcp   zealous_tesla
+146237ba9b4b   nlnetlabs/rtrtr   "/sbin/tini -- rtrtr…"   16 seconds ago   Up 14 seconds   0.0.0.0:49154->9810/tcp, 0.0.0.0:49153->9001/tcp   zealous_tesla
 ```
 _(the output in this example shows the high-numbered port mapping that occurs when using `docker run -P`)_
