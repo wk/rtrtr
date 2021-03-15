@@ -28,7 +28,7 @@ log_facility = "daemon"
 #
 # The HTTP server provides access to Prometheus-style metrics under the
 # `/metrics` path and plain text status information under `/status`
-http-listen = ["127.0.0.1:8080"]
+http-listen = ["127.0.0.1:9810"]
 
 # RTRTR uses two classes of components: units and targets. Units take data
 # from somewhere and produce a single, constantly updated data set. Targets
