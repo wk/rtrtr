@@ -35,8 +35,8 @@ RUN addgroup -g ${RUN_USER_GID} ${RUN_USER} && \
 
 USER $RUN_USER_UID
 
-# Expose the default metrics port
-EXPOSE 8080/tcp
+# Expose the reserved rtrtr metrics port
+EXPOSE 9810/tcp
 
 # Expose the default data serving port
 EXPOSE 9001/tcp
